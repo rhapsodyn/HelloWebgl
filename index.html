@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Aha</title>
+	<style type="text/css">
+	canvas {
+	    padding-left: 0;
+	    padding-right: 0;
+	    margin-left: auto;
+	    margin-right: auto;
+	    display: block;
+	}
+	</style>
+	<script type="text/javascript" src="sylvester.src.js"></script>
+	<script type="text/javascript" src="glUtils.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+</head>
+<body>
+	<canvas id="c" width="800" height="600"></canvas>
+</body>
+
+<script type="x-shader/vertex" id="v">
+	//in vec3 vPos;  not support in 1.0
+	attribute vec3 vPos;
+	attribute vec3 vColor;
+	
+	uniform mat4 MVP;
+
+	varying lowp vec4 color;
+
+	void main(void)
+	{
+		gl_Position = MVP * vec4(vPos, 1.0); 
+		color = vec4(vColor, 1.0);
+	}
+</script>
+
+<script type="x-shader/fragment" id="f">
+	varying lowp vec4 color;
+
+	void main(void)
+	{
+		gl_FragColor = color;
+	}
+</script>
+
+<script type="text/javascript">
+	DEMO.init(document.getElementById('c'));
+	DEMO.run();
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
